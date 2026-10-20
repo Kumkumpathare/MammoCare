@@ -1,0 +1,245 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[a4paper,margin=0.9in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage{array}
+
+\hypersetup{
+    pdftitle={BreaKHis Breast Cancer Classification Project Study Plan},
+    pdfauthor={Aryan Patel and Kumkum Pathare}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\headheight}{14pt}
+\renewcommand{\arraystretch}{1.18}
+\setlist[itemize]{leftmargin=1.5em,itemsep=2pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=3pt,topsep=3pt}
+\titleformat{\section}{\large\bfseries}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.7em}{}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{BreaKHis Breast Cancer Classification}
+\rhead{Research Study Plan}
+\cfoot{\thepage}
+
+\title{\textbf{Breast Cancer Classification Using BreaKHis}\\[0.3em]
+\large Research Project Study Plan}
+\author{Aryan Patel \& Kumkum Pathare}
+\date{\today}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\begin{abstract}
+This project examines how well machine learning models can distinguish benign from malignant breast histopathology images in the BreaKHis dataset. We begin by understanding the data and designing a fair evaluation procedure. We then establish reference results with a convolutional neural network (CNN) and a pretrained ResNet18 before testing selected choices in image preprocessing, augmentation, fine-tuning, and magnification. The purpose is to conduct a careful and reproducible study, interpret the results in context, and be clear about their limitations. The project is an academic study, not a clinically validated diagnostic system.
+\end{abstract}
+
+\section{Project Overview}
+
+Our central question is: \textit{How well can image-classification models distinguish benign from malignant BreaKHis images when images from the same patient are kept together during evaluation?} We will also examine whether specific modelling and preprocessing choices lead to meaningful differences in performance.
+
+An initial notebook has helped us become familiar with the dataset and try a first training pipeline. It is a starting point for exploration, not a fixed implementation or evidence of final performance. We will keep useful parts, revise others when necessary, and verify the data handling and evaluation before relying on any results.
+
+\section{Objectives and Scope}
+
+The project has six practical objectives:
+\begin{itemize}
+    \item Understand the dataset, labels, magnification levels, and patient or case identifiers.
+    \item Prevent images from the same patient from appearing in different data partitions.
+    \item Establish simple, reproducible reference models before testing more complex approaches.
+    \item Compare a focused set of modelling and preprocessing choices under consistent conditions.
+    \item Evaluate class-specific performance, examine errors, and discuss uncertainty and limitations.
+    \item Keep the code, data splits, configurations, and results organised so that the work can be repeated and checked.
+\end{itemize}
+
+The main task is binary classification: benign versus malignant. The initial models are a CNN trained from scratch and an ImageNet-pretrained ResNet18. BreaKHis remains the dataset for the main study. Tabular breast-cancer datasets and mammography datasets represent different data types and tasks, so they will not be combined with BreaKHis in the primary experiment.
+
+Results on BreaKHis alone cannot establish clinical usefulness or guarantee performance at other hospitals, with other scanners, or in different patient populations.
+
+\section{Understanding and Preparing the Dataset}
+
+Before comparing models, we need to know what each image represents and how its label and grouping identifier were assigned. We will:
+\begin{enumerate}
+    \item Review the directory structure, filenames, labels, magnification levels, histological subtypes, and image dimensions.
+    \item Check for unreadable files, missing metadata, unexpected labels, duplicate files, and images that may be closely related.
+    \item Verify how patient, specimen, and slide identifiers are represented. A folder name or filename substring will not be treated as a patient identifier until it has been checked against the dataset documentation and actual examples.
+    \item Create a manifest with one row per image. Relevant fields include image path, target label, verified patient or case identifier, subtype, magnification, width, and height.
+    \item Summarise image and patient counts by class and magnification, noting any groups with too few independent patients for reliable comparisons.
+\end{enumerate}
+
+The manifest will provide a consistent reference for training and evaluation. Any problems found in the initial notebook's indexing or split logic must be resolved before its results are used in model comparisons.
+
+\section{Evaluation Design}
+
+\subsection{Keeping Patients Separate}
+
+The data must be divided by a verified patient-level grouping identifier, not by randomly assigning individual images. Images from one patient, including images at different magnifications, must remain in the same partition. Otherwise, a model could be evaluated on images related to material it has already seen, leading to an overly optimistic estimate of performance.
+
+We will first create a patient-grouped holdout split and check it carefully. If the number of independent patients and the class distribution allow it, we will use grouped cross-validation for the main comparisons. All training, validation, and evaluation partitions must respect patient grouping. Automated checks will confirm that no patient identifier appears in more than one partition, and the split assignments will be saved.
+
+\subsection{Training, Validation, and Evaluation}
+
+Training data are used to fit model parameters. Validation data are used to compare configurations, choose checkpoints, and select a classification threshold when needed. A final test set, if used, is reserved for one final evaluation and must not influence model or threshold selection.
+
+If we use cross-validation, each fold will serve as the evaluation fold in turn. Model selection must take place using only the training portion of that fold, with an internal patient-grouped validation procedure where needed. This avoids using the evaluation fold to make decisions that are later presented as an unbiased result.
+
+We will use the same patient partitions for model comparisons wherever possible. This makes it easier to attribute performance differences to the factor being tested rather than to differences in the data split. We will record random seeds, preprocessing steps, model settings, and selection rules.
+
+\section{Baseline Models}
+
+Baselines give us reference points and help verify that the training and evaluation pipeline works before more experiments are introduced.
+
+\subsection{Majority-Class Baseline}
+
+This baseline always predicts the most common class in the training data. It is not expected to be a useful classifier. Instead, it provides a simple reference and helps reveal problems in class handling or metric calculations.
+
+\subsection{CNN Trained from Scratch}
+
+We will train a compact CNN using the training images and select its configuration using validation data. This provides a straightforward baseline whose features are learned from the BreaKHis training set rather than transferred from another dataset.
+
+\subsection{Pretrained ResNet18}
+
+We will adapt the final layer of an ImageNet-pretrained ResNet18 to the two-class task. We will first evaluate a clearly defined transfer-learning setup, then test fine-tuning as a separate experiment. This comparison will help us assess whether features learned from general images provide a useful starting point for histopathology images.
+
+For each baseline, we will record the model configuration, input preprocessing, optimiser, learning rate, batch size, training duration, checkpoint-selection rule, and random seed. All comparisons will use the same data partitions and metric definitions.
+
+\section{Experiments: What, How, and Why}
+
+Each experiment should answer a specific question. We will begin with the baselines, change one main factor at a time where practical, and avoid adding methods simply because they are available. The final set of experiments will depend on the reliability of the baseline, the available computing resources, and the questions that remain unanswered.
+
+\subsection{Experiment 1: Data Augmentation}
+
+\textbf{What are we testing?} Whether selected image transformations improve performance on images from patients not used for training.
+
+\textbf{How will we test it?} We will compare the baseline with a run that uses suitable flips and rotations. Colour perturbations, if considered, will be evaluated separately. Transformations will be applied only to training images; validation and evaluation images will use deterministic preprocessing. The model, patient partitions, and other training settings will remain as consistent as possible.
+
+\textbf{Why does it matter?} Histopathology images can differ in orientation and appearance. Augmentation may help a model avoid relying on incidental differences, but aggressive transformations can also distort useful tissue or staining information. The comparison will show whether the selected transformations help on held-out patients.
+
+\subsection{Experiment 2: Image Resizing}
+
+\textbf{What are we testing?} Whether the image-resizing method affects classification performance.
+
+\textbf{How will we test it?} We will compare direct resizing to a fixed square size with an aspect-ratio-preserving method, such as resizing followed by padding. The input size, model, patient partitions, and evaluation procedure will remain consistent.
+
+\textbf{Why does it matter?} Stretching an image to a square can change the shape of tissue structures. Preserving the aspect ratio may reduce this distortion, although padding and cropping have their own trade-offs. This experiment will help us decide which approach is more suitable for our data.
+
+\subsection{Experiment 3: Transfer Learning and Fine-Tuning}
+
+\textbf{What are we testing?} Whether ResNet18 performance changes when its pretrained feature extractor is frozen, partially unfrozen, or fine-tuned more broadly.
+
+\textbf{How will we test it?} We will first train the replacement classification layer while keeping the pretrained backbone frozen. If this baseline is stable, we will unfreeze selected deeper layers and train them with a suitably smaller learning rate. Each setup will use the same patient partitions and validation-based checkpoint selection.
+
+\textbf{Why does it matter?} Features learned from natural images may not fully represent histopathology patterns. Fine-tuning may help adapt those features, but it can also increase overfitting when the number of independent patients is limited. A controlled comparison is needed to determine whether fine-tuning helps in this setting.
+
+\subsection{Experiment 4: Magnification}
+
+\textbf{What are we testing?} How performance varies across the four BreaKHis magnifications: 40$\times$, 100$\times$, 200$\times$, and 400$\times$.
+
+\textbf{How will we test it?} We will first report the pooled model's performance separately for each magnification in the evaluation data. If there are enough independent patients for a meaningful comparison, we may also train models on individual magnifications. Images from the same patient will remain in one partition at every magnification. We will report the number of images and patients behind each result.
+
+\textbf{Why does it matter?} Magnification changes the scale at which tissue structures are visible. A pooled score may hide differences between magnification levels, while a result from a very small subgroup may be unstable. Reporting subgroup sizes alongside performance will help us interpret these comparisons responsibly.
+
+\subsection{Experiment 5: Stain Normalization}
+
+\textbf{What are we testing?} Whether one selected histopathology stain-normalization method changes performance compared with using the original images.
+
+\textbf{How will we test it?} We will establish a baseline using the original images and the model's standard input normalization. We will then apply one documented stain-normalization method and repeat the comparison using the same patient partitions and model settings. Any reference image or method parameters will be chosen without using the held-out evaluation data. We will record the method and its settings.
+
+\textbf{Why does it matter?} Staining colour and intensity can vary across images and laboratories. Normalization may reduce some of this variation, but it can also remove useful colour information or introduce artefacts. We will measure its effect rather than assume it will improve performance.
+
+ImageNet channel normalization and histopathology stain normalization are different operations and will be documented separately.
+
+\subsection{Experiment 6: Class-Level and Patient-Level Evaluation}
+
+\textbf{What are we testing?} Whether a model's performance is consistent across classes and whether image-level results provide the same picture as patient-level results.
+
+\textbf{How will we test it?} We will report accuracy, balanced accuracy, sensitivity for malignant cases, specificity, precision, malignant-class F1-score, ROC-AUC from predicted probabilities, and confusion matrices. We will calculate image-level metrics and, where labels and grouping information support it, patient-level metrics using a predefined rule to combine the probabilities of a patient's images. With cross-validation, we will report results for each fold and summarise them using the mean and standard deviation. Any threshold other than the default will be selected using validation data only.
+
+\textbf{Why does it matter?} Accuracy alone can hide weak performance on one class. Sensitivity and specificity describe different types of errors. Patient-level aggregation also reduces the risk that patients with many images dominate the interpretation. Fold-to-fold variation provides context about how sensitive the results are to the selected patients.
+
+\subsection{Experiment 7: Error Analysis and Explainability}
+
+\textbf{What are we testing?} What kinds of examples the selected model misclassifies, and which image regions appear to influence its predictions.
+
+\textbf{How will we test it?} We will review false positives and false negatives and look for patterns across magnification and histological subtype where sample sizes permit. Grad-CAM or a comparable method may be applied to a small, representative set of correct and incorrect predictions. We will record the examples examined and note when the visual explanations are unclear or inconsistent.
+
+\textbf{Why does it matter?} Aggregate metrics do not explain why a model fails. Reviewing errors may reveal weaknesses worth investigating or suggest that the model is responding to irrelevant image features. Heatmaps are qualitative tools for inspecting predictions; they do not prove that a model has learned medically meaningful features.
+
+\subsection{How We Will Compare Results}
+
+For each experiment, we will use the same patient partitions and evaluation definitions wherever possible, change one main factor at a time, and report sample counts alongside the metrics. We will keep negative and inconclusive findings in our records. A more complex method will not be considered better merely because it is newer or requires more computation; it must provide a clear and reproducible benefit for the question being studied.
+
+\section{Working Together and Keeping Records}
+
+We will work collaboratively across the full project. We may take the lead on different tasks when useful, but decisions about the dataset, evaluation design, model comparisons, and interpretation will be reviewed together. We will discuss the reasons behind important choices, review each other's code, and check results jointly rather than treating separate tasks as isolated work.
+
+Our shared records will include the dataset manifest, saved split assignments, configurations, training histories, predictions, model checkpoints, metric calculations, figures, and notes on failed or inconclusive experiments. These records will help both of us understand and reproduce the complete workflow.
+
+\section{Project Stages and Decision Points}
+
+The project will progress according to the reliability of the work, rather than a fixed week-by-week schedule.
+
+\begin{enumerate}
+    \item \textbf{Understand the data:} verify labels and identifiers, prepare the manifest, and document class and magnification distributions.
+    \item \textbf{Validate the evaluation:} create patient-grouped partitions, check for overlap, and verify metric calculations.
+    \item \textbf{Establish baselines:} run the majority-class baseline, CNN, and ResNet18 with documented settings.
+    \item \textbf{Run focused experiments:} select the most useful preprocessing or modelling questions based on the baseline results and available resources.
+    \item \textbf{Review and report:} examine image-level and patient-level results, inspect errors, reproduce the final workflow, and document limitations.
+\end{enumerate}
+
+If identifier checks or the evaluation procedure are not reliable, we will resolve those issues before adding more models. When computing time is limited, a smaller set of well-controlled experiments is more useful than many results that cannot be compared fairly.
+
+\section{Research Paper Reading Plan}
+
+The collected papers will help us understand the dataset, choose experiments, and place our findings in context.
+
+\begin{enumerate}
+    \item \textit{A Dataset for Breast Cancer Histopathological Image Classification} --- understand the BreaKHis dataset, its magnifications, and its original design.
+    \item \textit{Deep Learning Approaches for Breast Cancer Detection in Histopathology Images: A Review} --- review common approaches and evaluation challenges.
+    \item \textit{Deep Learning Applications in Breast Cancer Histopathological Imaging: Diagnosis, Treatment, and Prognosis} --- explore broader research directions while keeping our own task focused.
+    \item \textit{Stain Normalization Methods for Histopathology Image Analysis: A Comprehensive Review and Experimental Comparison} --- inform the stain-normalization experiment.
+    \item \textit{Nuclear Feature Extraction for Breast Tumor Diagnosis} --- understand earlier feature-based approaches and their role in the field.
+    \item \textit{Integrative Hybrid Deep Learning for Enhanced Breast Cancer Diagnosis: Leveraging the Wisconsin Breast Cancer Database and the CBIS-DDSM Dataset} --- optional background, since tabular and mammography data differ from BreaKHis histopathology images.
+\end{enumerate}
+
+We will compare our findings with published work only when the dataset, task, evaluation unit, and split strategy are sufficiently comparable. Published scores provide context, not targets that our models must reach.
+
+\section{Expected Deliverables}
+
+The completed project should include:
+\begin{itemize}
+    \item A checked dataset manifest and a concise dataset audit.
+    \item A documented patient-grouped evaluation procedure with automated overlap checks.
+    \item Reproducible CNN and ResNet18 baseline runs.
+    \item A clear record of the selected preprocessing and modelling experiments, including inconclusive results.
+    \item Image-level and patient-level metrics, with figures and sample counts where appropriate.
+    \item Error-analysis examples and carefully interpreted explainability visualizations.
+    \item An organised repository and a final report describing the methods, findings, and limitations.
+\end{itemize}
+
+\section{Limitations and Responsible Interpretation}
+
+The number of independent patients is smaller than the number of images, and results may vary with patient grouping, class balance, magnification, and evaluation design. Performance on one dataset does not establish how a model will perform at other institutions, with other scanners, or in different patient populations. Results for small subgroups may also be unstable.
+
+We will distinguish verified findings from exploratory results, describe the study's limitations, and avoid presenting the model as a diagnostic tool. Claims about clinical use would require independent validation and evidence beyond this project.
+
+\section{Immediate Priorities}
+
+Our first priority is to verify the dataset identifiers, create the manifest, and establish patient-grouped partitions with automated overlap checks. Once those checks pass, we can rerun the baseline models, confirm the evaluation metrics, and choose the next experiment based on the evidence. This sequence keeps our decisions grounded in the data rather than assumptions about which method will work best.
+
+\section{Conclusion}
+
+Our aim is to conduct a careful study of benign-versus-malignant classification using BreaKHis, not simply to obtain a high score from one training run. A verified dataset, fair patient-level separation, comparable baselines, and clearly motivated experiments will provide a sound basis for interpreting the results. We will report what worked, what did not, and what remains uncertain.
+
+\end{document}
