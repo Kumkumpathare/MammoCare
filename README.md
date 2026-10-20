@@ -1,2 +1,2 @@
 # MammoCare
-Research repository featuring breast cancer data science and machine learning.
+Research repository exploring breast histopathology image analysis, data science, and deep learning for cancer classification.
