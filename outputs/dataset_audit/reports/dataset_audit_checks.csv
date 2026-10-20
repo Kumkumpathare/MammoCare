@@ -1,0 +1,26 @@
+check,observed,expected,status
+PNG image count,7909,7909,PASS
+Unparsed PNG filenames,0,0,PASS
+Unreadable images,0,0,PASS
+Filename class vs class folder mismatches,0,0,PASS
+Filename subtype vs subtype folder mismatches,0,0,PASS
+Filename case ID vs slide-folder mismatches,0,0,PASS
+Filename magnification vs magnification-folder mismatches,0,0,PASS
+Unexpected magnification values,0,0,PASS
+Unknown subtype codes,0,0,PASS
+Rows missing required metadata,0,0,PASS
+Images with invalid dimensions,0,0,PASS
+Groups containing more than one binary class label,0,0,PASS
+Numeric-prefix collision keys (suffix retained; informational),10,0,INFO
+Exact-duplicate image hash groups,0,0,PASS
+Groups containing multiple subtype codes,1,0,INFO
+Non-RGB images (converted to RGB by the loader),0,0,PASS
+Benign images,2480,2480,PASS
+Malignant images,5429,5429,PASS
+Filename-derived case IDs,82,82,PASS
+Benign filename-derived case IDs,24,24,PASS
+Malignant filename-derived case IDs,58,58,PASS
+Images at 40X,1995,1995,PASS
+Images at 100X,2081,2081,PASS
+Images at 200X,2013,2013,PASS
+Images at 400X,1820,1820,PASS

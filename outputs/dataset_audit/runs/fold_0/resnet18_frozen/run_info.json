@@ -1,0 +1,39 @@
+{
+  "model": "resnet18_frozen",
+  "config": {
+    "data_root": "/kaggle/working/data",
+    "out_dir": "outputs",
+    "seed": 42,
+    "img_size": 224,
+    "batch_size": 32,
+    "epochs": 15,
+    "patience": 4,
+    "lr_cnn": 0.001,
+    "lr_head": 0.001,
+    "weight_decay": 0.0001,
+    "n_outer_folds": 5,
+    "n_inner_folds": 4,
+    "folds_to_run": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "num_workers": 2,
+    "threshold": 0.5
+  },
+  "learning_rate": 0.001,
+  "optimizer": "AdamW",
+  "class_weights": [
+    1.4441776275634766,
+    0.7647807002067566
+  ],
+  "selection_rule": "maximum validation ROC-AUC",
+  "best_epoch": 6,
+  "epochs_run": 10,
+  "train_seconds": 501.6,
+  "train_groups": 48,
+  "validation_groups": 16,
+  "test_groups": 17
+}

@@ -1,0 +1,39 @@
+{
+  "model": "cnn_scratch",
+  "config": {
+    "data_root": "/kaggle/working/data",
+    "out_dir": "outputs",
+    "seed": 42,
+    "img_size": 224,
+    "batch_size": 32,
+    "epochs": 15,
+    "patience": 4,
+    "lr_cnn": 0.001,
+    "lr_head": 0.001,
+    "weight_decay": 0.0001,
+    "n_outer_folds": 5,
+    "n_inner_folds": 4,
+    "folds_to_run": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "num_workers": 2,
+    "threshold": 0.5
+  },
+  "learning_rate": 0.001,
+  "optimizer": "AdamW",
+  "class_weights": [
+    1.5745891332626343,
+    0.7326470613479614
+  ],
+  "selection_rule": "maximum validation ROC-AUC",
+  "best_epoch": 2,
+  "epochs_run": 6,
+  "train_seconds": 296.5,
+  "train_groups": 48,
+  "validation_groups": 17,
+  "test_groups": 16
+}

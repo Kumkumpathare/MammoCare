@@ -1,0 +1,1 @@
+image_path,case_id,patient_id,class_code,label,label_name,subtype_code,subtype,year,slide,number_key,slide_id,magnification,sequence,folder_mag,folder_slide,folder_subtype,folder_class,filename_parse_ok,parse_error,readable,width,height,color_mode,sha256,file_error,is_duplicate
