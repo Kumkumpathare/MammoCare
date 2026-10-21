@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1350" height="394" viewBox="0 0 1350 394" role="img" aria-labelledby="title desc">
+  <title id="title">BreakHis model evaluation workflow</title>
+  <desc id="desc">BreakHis dataset of 7,909 images flows through manifest and audit checks, 81 group IDs, five outer folds, three model approaches, and metrics, predictions, and error review.</desc>
+  <defs>
+    <style>
+      .box { fill: #124b80; stroke: #4386c0; stroke-width: 1.2; }
+      .label { fill: #8db7e6; font-family: Arial, Helvetica, sans-serif; font-size: 23px; text-anchor: middle; }
+      .arrow { fill: none; stroke: #92918b; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1,1 L8,5 L1,9" fill="none" stroke="#92918b" stroke-width="2"/>
+    </marker>
+  </defs>
+  <rect width="1350" height="394" fill="#151515"/>
+  <!-- Main workflow boxes -->
+  <rect class="box" x="33" y="133" width="184" height="128" rx="9"/>
+  <text class="label" x="125" y="184"><tspan x="125">BreakHis</tspan><tspan x="125" dy="27">7,909 images</tspan></text>
+
+  <rect class="box" x="253" y="133" width="184" height="128" rx="9"/>
+  <text class="label" x="345" y="192"><tspan x="345">Manifest and</tspan><tspan x="345" dy="27">audit checks</tspan></text>
+
+  <rect class="box" x="473" y="133" width="184" height="128" rx="9"/>
+  <text class="label" x="565" y="192"><tspan x="565">Group IDs</tspan><tspan x="565" dy="27">81 groups</tspan></text>
+
+  <rect class="box" x="693" y="133" width="184" height="128" rx="9"/>
+  <text class="label" x="785" y="177"><tspan x="785">5 outer</tspan><tspan x="785" dy="27">folds: train,</tspan><tspan x="785" dy="27">val, test</tspan></text>
+
+  <!-- Branch arrows -->
+  <path class="arrow" marker-end="url(#arrowhead)" d="M217 197 H248"/>
+  <path class="arrow" marker-end="url(#arrowhead)" d="M437 197 H468"/>
+  <path class="arrow" marker-end="url(#arrowhead)" d="M657 197 H688"/>
+
+  <!-- Model options -->
+  <rect class="box" x="913" y="33" width="184" height="88" rx="9"/>
+  <text class="label" x="1005" y="87">Majority</text>
+
+  <rect class="box" x="913" y="153" width="184" height="88" rx="9"/>
+  <text class="label" x="1005" y="193"><tspan x="1005">CNN</tspan><tspan x="1005" dy="27">scratch</tspan></text>
+
+  <rect class="box" x="913" y="273" width="184" height="88" rx="9"/>
+  <text class="label" x="1005" y="313"><tspan x="1005">ResNet18</tspan><tspan x="1005" dy="27">frozen</tspan></text>
+
+  <path class="arrow" marker-end="url(#arrowhead)" d="M877 197 L908 77"/>
+  <path class="arrow" marker-end="url(#arrowhead)" d="M877 197 H908"/>
+  <path class="arrow" marker-end="url(#arrowhead)" d="M877 197 L908 317"/>
+
+  <!-- Evaluation -->
+  <rect class="box" x="1133" y="133" width="184" height="128" rx="9"/>
+  <text class="label" x="1225" y="177"><tspan x="1225">Metrics,</tspan><tspan x="1225" dy="27">predictions,</tspan><tspan x="1225" dy="27">error review</tspan></text>
+
+  <path class="arrow" marker-end="url(#arrowhead)" d="M1097 77 L1128 197"/>
+  <path class="arrow" marker-end="url(#arrowhead)" d="M1097 197 H1128"/>
+  <path class="arrow" marker-end="url(#arrowhead)" d="M1097 317 L1128 197"/>
+</svg>
