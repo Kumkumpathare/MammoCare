@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/mammocare-logo.svg" alt="MammoCare logo" width="600">
+  <img src="https://raw.githubusercontent.com/aryanap07/MammoCare/main/assets/mammocare-logo.svg" alt="MammoCare logo" width="600">
 </p>
 <h1 align="center">MammoCare</h1>
  
