@@ -1,3 +1,4 @@
+
 [build-system]
 requires = ["setuptools>=77.0"]
 build-backend = "setuptools.build_meta"
@@ -7,8 +8,12 @@ name = "MammoCare"
 version = "0.1.0"
 description = "Research repository exploring breast histopathology image analysis, data science, and deep learning for cancer classification."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 license = "MIT"
+authors = [
+    { name = "Aryan Patel", email = "aryan.timeless@proton.me" },
+    { name = "Kumkum Pathare", email = "pawarkumkum3@gmail.com" },
+]
 dependencies = [
     "ipython",
     "matplotlib",
