@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Why group-separated evaluation matters</title>
+  <desc id="desc">A conceptual comparison: randomly splitting individual images can place related images from the same filename-derived group in training and evaluation, while group-separated splitting keeps a group in only one partition.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F8F7FC"/><stop offset="1" stop-color="#F3F5FA"/></linearGradient>
+    <style>
+      .h{font:700 24px Arial,Helvetica,sans-serif;fill:#24163D}.sh{font:700 17px Arial,Helvetica,sans-serif;fill:#2B1D45}.t{font:400 14px Arial,Helvetica,sans-serif;fill:#5F5872}.small{font:600 12px Arial,Helvetica,sans-serif;fill:#fff}.label{font:700 12px Arial,Helvetica,sans-serif;fill:#4B2A83}
+    </style>
+  </defs>
+  <rect width="1200" height="560" rx="24" fill="url(#bg)"/>
+  <text x="48" y="52" class="h">Keep related images together during evaluation</text>
+  <text x="48" y="79" class="t">Conceptual illustration of a common evaluation risk—not a claim about verified patient identity in this dataset.</text>
+  <rect x="42" y="112" width="545" height="350" rx="18" fill="#FFFFFF" stroke="#E5CAD9" stroke-width="1.5"/>
+  <rect x="613" y="112" width="545" height="350" rx="18" fill="#FFFFFF" stroke="#BBDDD2" stroke-width="1.5"/>
+  <text x="68" y="151" class="sh">Random image-level split</text>
+  <text x="68" y="175" class="t">Related images may cross the boundary.</text>
+  <text x="640" y="151" class="sh">Group-separated split</text>
+  <text x="640" y="175" class="t">Each filename-derived group stays in one partition.</text>
+  <rect x="68" y="198" width="224" height="205" rx="12" fill="#F1ECF8" stroke="#D8CDEB"/>
+  <rect x="319" y="198" width="240" height="205" rx="12" fill="#FBEAF2" stroke="#E8C4D7"/>
+  <text x="180" y="221" text-anchor="middle" class="label">TRAINING</text><text x="439" y="221" text-anchor="middle" class="label">EVALUATION</text>
+  <g>
+    <rect x="91" y="239" width="80" height="48" rx="8" fill="#6B4C9A"/><text x="131" y="259" text-anchor="middle" class="small">Group A</text><text x="131" y="275" text-anchor="middle" class="small">image 1</text>
+    <rect x="183" y="239" width="80" height="48" rx="8" fill="#6B4C9A"/><text x="223" y="259" text-anchor="middle" class="small">Group B</text><text x="223" y="275" text-anchor="middle" class="small">image 1</text>
+    <rect x="91" y="305" width="80" height="48" rx="8" fill="#6B4C9A"/><text x="131" y="325" text-anchor="middle" class="small">Group A</text><text x="131" y="341" text-anchor="middle" class="small">image 2</text>
+    <rect x="183" y="305" width="80" height="48" rx="8" fill="#6B4C9A"/><text x="223" y="325" text-anchor="middle" class="small">Group C</text><text x="223" y="341" text-anchor="middle" class="small">image 1</text>
+    <rect x="344" y="239" width="86" height="48" rx="8" fill="#B33C7B"/><text x="387" y="259" text-anchor="middle" class="small">Group A</text><text x="387" y="275" text-anchor="middle" class="small">image 3</text>
+    <rect x="443" y="239" width="91" height="48" rx="8" fill="#B33C7B"/><text x="488" y="259" text-anchor="middle" class="small">Group D</text><text x="488" y="275" text-anchor="middle" class="small">image 1</text>
+    <rect x="344" y="305" width="86" height="48" rx="8" fill="#B33C7B"/><text x="387" y="325" text-anchor="middle" class="small">Group E</text><text x="387" y="341" text-anchor="middle" class="small">image 1</text>
+    <path d="M131 291 C150 299 175 299 200 291" fill="none" stroke="#B33C7B" stroke-width="2" stroke-dasharray="4 4"/>
+    <path d="M387 291 C365 299 337 299 295 291" fill="none" stroke="#B33C7B" stroke-width="2" stroke-dasharray="4 4"/>
+  </g>
+  <text x="68" y="431" class="t">Risk: related images can make evaluation</text><text x="68" y="449" class="t">look more optimistic than intended.</text>
+  <rect x="640" y="198" width="224" height="205" rx="12" fill="#F1ECF8" stroke="#D8CDEB"/>
+  <rect x="891" y="198" width="240" height="205" rx="12" fill="#E6F4EF" stroke="#BBDDD2"/>
+  <text x="752" y="221" text-anchor="middle" class="label">TRAINING</text><text x="1011" y="221" text-anchor="middle" class="label">EVALUATION</text>
+  <g>
+    <rect x="663" y="239" width="80" height="48" rx="8" fill="#6B4C9A"/><text x="703" y="259" text-anchor="middle" class="small">Group A</text><text x="703" y="275" text-anchor="middle" class="small">image 1</text>
+    <rect x="755" y="239" width="80" height="48" rx="8" fill="#6B4C9A"/><text x="795" y="259" text-anchor="middle" class="small">Group A</text><text x="795" y="275" text-anchor="middle" class="small">image 2</text>
+    <rect x="663" y="305" width="80" height="48" rx="8" fill="#6B4C9A"/><text x="703" y="325" text-anchor="middle" class="small">Group B</text><text x="703" y="341" text-anchor="middle" class="small">image 1</text>
+    <rect x="755" y="305" width="80" height="48" rx="8" fill="#6B4C9A"/><text x="795" y="325" text-anchor="middle" class="small">Group B</text><text x="795" y="341" text-anchor="middle" class="small">image 2</text>
+    <rect x="916" y="239" width="86" height="48" rx="8" fill="#398B79"/><text x="959" y="259" text-anchor="middle" class="small">Group C</text><text x="959" y="275" text-anchor="middle" class="small">image 1</text>
+    <rect x="1015" y="239" width="91" height="48" rx="8" fill="#398B79"/><text x="1060" y="259" text-anchor="middle" class="small">Group C</text><text x="1060" y="275" text-anchor="middle" class="small">image 2</text>
+    <rect x="916" y="305" width="86" height="48" rx="8" fill="#398B79"/><text x="959" y="325" text-anchor="middle" class="small">Group D</text><text x="959" y="341" text-anchor="middle" class="small">image 1</text>
+    <rect x="1015" y="305" width="91" height="48" rx="8" fill="#398B79"/><text x="1060" y="325" text-anchor="middle" class="small">Group D</text><text x="1060" y="341" text-anchor="middle" class="small">image 2</text>
+  </g>
+  <text x="640" y="431" class="t">Benefit: group identifiers do not cross the</text><text x="640" y="449" class="t">partition boundary in the evaluation design.</text>
+  <text x="48" y="505" class="label">Important limitation</text>
+  <text x="48" y="530" class="t">MammoCare groups by complete filename tokens, which are proxies—not independently verified clinical patient IDs.</text>
+</svg>

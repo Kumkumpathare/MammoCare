@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="510" viewBox="0 0 1200 510" role="img" aria-labelledby="title desc">
+  <title id="title">MammoCare research workflow</title>
+  <desc id="desc">Six connected stages: dataset setup, image audit, identifier review, group-separated folds, baseline modelling, and evaluation with recorded outputs.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F8F7FC"/><stop offset="1" stop-color="#F3F5FA"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4B2A83"/><stop offset="1" stop-color="#9B3F87"/></linearGradient>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#8C84A7"/></marker>
+    <style>
+      .heading{font:700 25px Arial,Helvetica,sans-serif;fill:#24163D}.sub{font:400 14px Arial,Helvetica,sans-serif;fill:#665D7B}.step{font:700 16px Arial,Helvetica,sans-serif;fill:#2B1D45}.body{font:400 13px Arial,Helvetica,sans-serif;fill:#5F5872}.num{font:700 13px Arial,Helvetica,sans-serif;fill:#fff}.foot{font:600 14px Arial,Helvetica,sans-serif;fill:#4B2A83}
+    </style>
+  </defs>
+  <rect width="1200" height="510" rx="24" fill="url(#bg)"/>
+  <text x="48" y="55" class="heading">MammoCare research workflow</text>
+  <text x="48" y="82" class="sub">A documented path from raw images to interpretable, reproducible baseline evidence</text>
+  <path d="M198 206 H235 M386 206 H423 M574 206 H611 M762 206 H799 M950 206 H987" stroke="#8C84A7" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <g transform="translate(42 126)">
+    <rect width="156" height="166" rx="16" fill="#FFFFFF" stroke="#DDD7EC" stroke-width="1.5"/>
+    <circle cx="24" cy="24" r="14" fill="url(#accent)"/><text x="24" y="29" text-anchor="middle" class="num">1</text>
+    <rect x="54" y="14" width="34" height="28" rx="4" fill="#EEE8F7" stroke="#6C4B9A" stroke-width="1.5"/><path d="M61 22 H80 M61 28 H80 M61 34 H75" stroke="#6C4B9A" stroke-width="1.5"/>
+    <text x="14" y="70" class="step">Dataset setup</text><text x="14" y="96" class="body"><tspan x="14">Locate or download</tspan><tspan x="14" dy="18">the BreaKHis</tspan><tspan x="14" dy="18">image archive.</tspan></text>
+  </g>
+  <g transform="translate(230 126)">
+    <rect width="156" height="166" rx="16" fill="#FFFFFF" stroke="#DDD7EC" stroke-width="1.5"/>
+    <circle cx="24" cy="24" r="14" fill="url(#accent)"/><text x="24" y="29" text-anchor="middle" class="num">2</text>
+    <circle cx="72" cy="27" r="14" fill="#FBE9F2" stroke="#B33C7B" stroke-width="1.5"/><path d="M66 27 l4 4 8 -9" fill="none" stroke="#9B326B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="14" y="70" class="step">Audit images</text><text x="14" y="96" class="body"><tspan x="14">Check names, labels,</tspan><tspan x="14" dy="18">readability, metadata</tspan><tspan x="14" dy="18">and duplicate hashes.</tspan></text>
+  </g>
+  <g transform="translate(418 126)">
+    <rect width="156" height="166" rx="16" fill="#FFFFFF" stroke="#DDD7EC" stroke-width="1.5"/>
+    <circle cx="24" cy="24" r="14" fill="url(#accent)"/><text x="24" y="29" text-anchor="middle" class="num">3</text>
+    <circle cx="72" cy="27" r="14" fill="#E9EAFB" stroke="#6554A3" stroke-width="1.5"/><path d="M64 22 H80 M64 27 H80 M64 32 H76" stroke="#6554A3" stroke-width="2" stroke-linecap="round"/>
+    <text x="14" y="70" class="step">Review groups</text><text x="14" y="96" class="body"><tspan x="14">Retain full filename</tspan><tspan x="14" dy="18">tokens; review ID</tspan><tspan x="14" dy="18">collisions carefully.</tspan></text>
+  </g>
+  <g transform="translate(606 126)">
+    <rect width="156" height="166" rx="16" fill="#FFFFFF" stroke="#DDD7EC" stroke-width="1.5"/>
+    <circle cx="24" cy="24" r="14" fill="url(#accent)"/><text x="24" y="29" text-anchor="middle" class="num">4</text>
+    <rect x="57" y="13" width="32" height="28" rx="4" fill="#E7F4F0" stroke="#398B79" stroke-width="1.5"/><path d="M62 20 H84 M62 27 H84 M62 34 H84" stroke="#398B79" stroke-width="2"/>
+    <text x="14" y="70" class="step">Split by group</text><text x="14" y="96" class="body"><tspan x="14">Build five outer</tspan><tspan x="14" dy="18">folds using filename-</tspan><tspan x="14" dy="18">derived group proxies.</tspan></text>
+  </g>
+  <g transform="translate(794 126)">
+    <rect width="156" height="166" rx="16" fill="#FFFFFF" stroke="#DDD7EC" stroke-width="1.5"/>
+    <circle cx="24" cy="24" r="14" fill="url(#accent)"/><text x="24" y="29" text-anchor="middle" class="num">5</text>
+    <rect x="57" y="13" width="32" height="28" rx="4" fill="#FFF0E4" stroke="#C87838" stroke-width="1.5"/><path d="M62 34 L68 25 L74 30 L82 18" fill="none" stroke="#C87838" stroke-width="2.2"/>
+    <text x="14" y="70" class="step">Train baselines</text><text x="14" y="96" class="body"><tspan x="14">Majority class,</tspan><tspan x="14" dy="18">CNN from scratch,</tspan><tspan x="14" dy="18">frozen ResNet18.</tspan></text>
+  </g>
+  <g transform="translate(982 126)">
+    <rect width="176" height="166" rx="16" fill="#FFFFFF" stroke="#DDD7EC" stroke-width="1.5"/>
+    <circle cx="24" cy="24" r="14" fill="url(#accent)"/><text x="24" y="29" text-anchor="middle" class="num">6</text>
+    <path d="M60 37 V16 H88 V37 M60 25 H88 M69 16 V37 M79 16 V37" fill="none" stroke="#4B2A83" stroke-width="1.5"/>
+    <text x="14" y="70" class="step">Evaluate &amp; record</text><text x="14" y="96" class="body"><tspan x="14">Save metrics,</tspan><tspan x="14" dy="18">predictions, fold</tspan><tspan x="14" dy="18">records and errors.</tspan></text>
+  </g>
+  <rect x="42" y="335" width="1116" height="118" rx="16" fill="#ECE7F6"/>
+  <text x="66" y="369" class="foot">Research safeguard</text>
+  <text x="66" y="396" class="body"><tspan x="66">Filename-derived groups are proxies, not verified clinical patient identities. Group separation reduces a known leakage risk,</tspan><tspan x="66" dy="21">but does not establish patient-level validity or clinical performance. Audit assumptions before interpreting results.</tspan></text>
+  <text x="42" y="482" class="sub">Notebook 01 · Dataset audit, grouped evaluation and baseline models</text>
+</svg>
