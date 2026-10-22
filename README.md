@@ -38,7 +38,7 @@
   <a href="#research-focus">Research Focus</a> &nbsp;·&nbsp;
   <a href="#dataset">Dataset</a> &nbsp;·&nbsp;
   <a href="#methodology">Methodology</a> &nbsp;·&nbsp;
-  <a href="#baseline-results">Baseline Results</a> &nbsp;·&nbsp;
+  <a href="#results-and-interpretation">Results and Interpretation</a> &nbsp;·&nbsp;
   <a href="#getting-started">Getting Started</a> &nbsp;·&nbsp;
   <a href="#research-plan">Research Plan</a>
 </p>
