@@ -25,9 +25,11 @@
 <p align="center">
   <img
     src="https://raw.githubusercontent.com/aryanap07/MammoCare/main/assets/mammocare-research-lab.png"
-    alt="MammoCare researchers studying breast histopathology images in a biomedical research laboratory"
     width="100%"
   >
+  <em>
+    MammoCare researchers studying breast histopathology images in a biomedical research laboratory
+  </em>
 </p>
 
 <p align="center">
