@@ -259,7 +259,7 @@ If you use this repository in academic work, cite the project and the dataset. A
 ```bibtex
 @misc{mammocare,
   title   = {MammoCare: Research on Breast Histopathology Image Classification},
-  author  = {Patel, Aryan and Pathare, Kumkum},
+  author  = {Aryan Patel & Kumkum Pathare},
   year    = {2026},
   url     = {https://github.com/aryanap07/MammoCare}
 }
