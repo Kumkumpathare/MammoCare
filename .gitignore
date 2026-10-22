@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+*.egg-info/
+build/
+dist/
+.eggs/
+wheels/
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment Variables and Secrets
+.env
+.env.*
+!.env.example
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Machine Learning Artifacts
+checkpoints/
+models/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.h5
+*.keras
+*.joblib
+*.pkl
+*.pickle
+
+# Experiment Outputs
+outputs/
+runs/
+mlruns/
+lightning_logs/
+wandb/
+tensorboard/
+
+# Datasets and Large Files
+data/
+datasets/
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+
+# Python Testing and Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Type Checking and Linting
+.mypy_cache/
+.dmypy.json
+.ruff_cache/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Operating Systems
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs and Temporary Files
+*.log
+*.tmp
+*.bak

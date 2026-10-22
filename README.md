@@ -23,6 +23,14 @@
 </p>
 
 <p align="center">
+  <img
+    src="https://raw.githubusercontent.com/aryanap07/MammoCare/main/assets/mammocare-research-lab.png"
+    alt="MammoCare researchers studying breast histopathology images in a biomedical research laboratory"
+    width="100%"
+  >
+</p>
+
+<p align="center">
   <a href="#research-focus">Research Focus</a> &nbsp;·&nbsp;
   <a href="#dataset">Dataset</a> &nbsp;·&nbsp;
   <a href="#methodology">Methodology</a> &nbsp;·&nbsp;
