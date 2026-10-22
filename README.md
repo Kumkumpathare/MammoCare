@@ -5,7 +5,7 @@
 <h1 align="center">MammoCare</h1>
 
 <p align="center">
-  <strong>Reproducible research in breast histopathology image classification</strong><br>
+  <strong>Reproducible research in breast histopathology image classification.</strong><br>
   <sub>Auditable data preparation. Group-aware evaluation. Evidence-led experiments.</sub>
 </p>
 
