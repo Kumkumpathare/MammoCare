@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "MammoCare"
-version = "0.1.0"
-description = "Research repository exploring breast histopathology image analysis, data science, and deep learning for cancer classification."
+version = "0.1.1"
+description = "Collaborative research at the intersection of breast histopathology, data science, and deep learning."
 readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"

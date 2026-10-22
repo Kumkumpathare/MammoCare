@@ -23,27 +23,6 @@ ENV/
 # Jupyter Notebook
 .ipynb_checkpoints/
 
-# Machine Learning Artifacts
-checkpoints/
-models/
-*.pt
-*.pth
-*.ckpt
-*.onnx
-*.h5
-*.keras
-*.joblib
-*.pkl
-*.pickle
-
-# Experiment Outputs
-outputs/
-runs/
-mlruns/
-lightning_logs/
-wandb/
-tensorboard/
-
 # Datasets and Large Files
 data/
 datasets/

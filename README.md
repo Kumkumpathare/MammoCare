@@ -20,7 +20,8 @@
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-1F1155?style=flat-square"></a>
   <a href="https://www.python.org/"><img alt="Python 3.12+" src="https://img.shields.io/badge/Python-3.12%2B-7A2A7C?style=flat-square&logo=python&logoColor=white"></a>
   <a href="https://pytorch.org/"><img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-D01C47?style=flat-square&logo=pytorch&logoColor=white"></a>
-  <img alt="Research prototype" src="https://img.shields.io/badge/Status-Research%20Prototype-F26B86?style=flat-square">
+  <a href="https://jupyter.org/"><img alt="Jupyter Notebook" src="https://img.shields.io/badge/Jupyter-Notebook-B84A7D?style=flat-square&logo=jupyter&logoColor=white"></a>
+  <img alt="Research Prototype" src="https://img.shields.io/badge/Status-Research%20Prototype-F26B86?style=flat-square">
 </p>
 
 <p align="center">
@@ -99,6 +100,48 @@ Notebook 01 is organised around these stages:
 The BreaKHis filenames do not provide an independently verified clinical patient metadata table in this workflow. The notebook therefore uses the complete filename-derived `YEAR-SLIDE_ID` token as a **grouping proxy**, not as proof of patient identity. In the current audit, 82 diagnostic case IDs produce 81 default grouping IDs because the exact token `14-13412` appears under both ductal carcinoma and lobular carcinoma and is kept together for split safety.
 
 Different suffixes remain distinct identifiers unless documented evidence supports merging them. Consequently, this protocol prevents a grouping ID from crossing partitions, but it cannot guarantee that every image from the same real-world patient is separated. Results described as *group-level* below must not be interpreted as verified patient-level performance. This limitation should be resolved or assessed through sensitivity analysis before making stronger patient-level claims.
+
+### Example Images
+
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <img
+        src="assets/sample_malignant.jpg"
+        height="300"
+        alt="Representative malignant breast histopathology image"
+      >
+      <br><br>
+      <img
+        src="https://img.shields.io/badge/Malignant-D01C47?style=for-the-badge"
+        alt="Malignant"
+      >
+    </td>
+    <td align="center" width="50%">
+      <img
+        src="assets/sample_benign.jpg"
+        height="300"
+        alt="Representative benign breast histopathology image"
+      >
+      <br><br>
+      <img
+        src="https://img.shields.io/badge/Benign-1F1155?style=for-the-badge"
+        alt="Benign"
+      >
+    </td>
+  </tr>
+</table>
+
+<p align="center">
+  <sub>
+    Representative H&E-stained breast histopathology images illustrating benign and malignant tissue classes.
+  </sub>
+</p>
+
+> [!NOTE]
+> These images are provided for research and educational purposes only and are not intended for clinical diagnosis.
+
+
 
 ## Models and Reproducibility
 
