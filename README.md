@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/mammocare-logo.svg" alt="MammoCare" width="460">
+  <img src="https://raw.githubusercontent.com/aryanap07/MammoCare/main/assets/mammocare-logo.svg" alt="MammoCare" width="460">
 </p>
 
 <h1 align="center">MammoCare</h1>
@@ -67,7 +67,7 @@ Obtain the dataset from the [official BreaKHis database page](https://web.inf.uf
 ## Methodology
 
 <p align="center">
-  <img src="assets/pipeline.svg" alt="MammoCare workflow from dataset auditing and grouping through preprocessing, modelling, and evaluation" width="100%">
+  <img src="https://raw.githubusercontent.com/aryanap07/MammoCare/main/assets/pipeline.svg" alt="MammoCare workflow from dataset auditing and grouping through preprocessing, modelling, and evaluation" width="100%">
 </p>
 
 Notebook 01 is organised around these stages:
@@ -80,7 +80,7 @@ Notebook 01 is organised around these stages:
 6. **Evaluate and inspect errors.** Report image-level metrics and a second set of metrics after averaging image probabilities within each filename-derived group. Review results by magnification and save misclassified examples for inspection.
 
 <p align="center">
-  <img src="assets/leakage.svg" alt="Illustration comparing image-level random splitting with group-separated evaluation" width="100%">
+  <img src="https://raw.githubusercontent.com/aryanap07/MammoCare/main/assets/leakage.svg" alt="Illustration comparing image-level random splitting with group-separated evaluation" width="100%">
 </p>
 
 ### Grouping policy and its limits
