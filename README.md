@@ -29,7 +29,7 @@
     width="100%"
   >
   <em>
-    MammoCare researchers studying breast histopathology images in a biomedical research laboratory
+    MammoCare researchers studying breast histopathology images in a biomedical research laboratory.
   </em>
 </p>
 

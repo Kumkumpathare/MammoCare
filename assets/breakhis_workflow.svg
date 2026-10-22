@@ -1,55 +1,150 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1350" height="394" viewBox="0 0 1350 394" role="img" aria-labelledby="title desc">
-  <title id="title">BreakHis model evaluation workflow</title>
-  <desc id="desc">BreakHis dataset of 7,909 images flows through manifest and audit checks, 81 group IDs, five outer folds, three model approaches, and metrics, predictions, and error review.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">MammoCare BreaKHis grouped evaluation workflow</title>
+  <desc id="desc">Six stages show BreaKHis images, dataset audit, filename-derived group identifiers, five group-separated outer folds, three baseline models, and image-level and group-level evaluation. A note explains that filename-derived groups are proxies rather than verified patient identities.</desc>
   <defs>
-    <style>
-      .box { fill: #124b80; stroke: #4386c0; stroke-width: 1.2; }
-      .label { fill: #8db7e6; font-family: Arial, Helvetica, sans-serif; font-size: 23px; text-anchor: middle; }
-      .arrow { fill: none; stroke: #92918b; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; }
-    </style>
-    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M1,1 L8,5 L1,9" fill="none" stroke="#92918b" stroke-width="2"/>
+    <linearGradient id="canvas" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FCFAFE"/>
+      <stop offset="1" stop-color="#F4F3FA"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4C2A7A"/>
+      <stop offset="1" stop-color="#7851A6"/>
+    </linearGradient>
+    <linearGradient id="plum" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7650A8"/>
+      <stop offset="1" stop-color="#A65B91"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7.2" refY="3.5" orient="auto">
+      <path d="M0 0L7 3.5L0 7Z" fill="#9D8BB5"/>
     </marker>
+    <style>
+      .step-title { font: 650 21px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #31233F; }
+      .step-body { font: 450 16px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #655B70; }
+      .tiny { font: 650 12px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: 1.4px; }
+      .card { fill: #FFFFFF; stroke: #E5DDED; stroke-width: 1.5; }
+    </style>
   </defs>
-  <rect width="1350" height="394" fill="#151515"/>
-  <!-- Main workflow boxes -->
-  <rect class="box" x="33" y="133" width="184" height="128" rx="9"/>
-  <text class="label" x="125" y="184"><tspan x="125">BreakHis</tspan><tspan x="125" dy="27">7,909 images</tspan></text>
+  <rect width="1200" height="760" rx="30" fill="url(#canvas)"/>
+  <circle cx="1105" cy="86" r="78" fill="#EAE2F4" opacity="0.6"/>
+  <circle cx="1090" cy="93" r="43" fill="none" stroke="#D3C2E3" stroke-width="2" opacity="0.8"/>
+  <text x="48" y="57" class="tiny" fill="#806A9E">MAMMOCARE · NOTEBOOK 01</text>
+  <text x="48" y="98" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="730" letter-spacing="-0.7" fill="#332143">BreaKHis baseline evaluation</text>
+  <text x="48" y="128" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="17" fill="#746981">Audit first. Separate groups. Evaluate without using the test fold for model selection.</text>
 
-  <rect class="box" x="253" y="133" width="184" height="128" rx="9"/>
-  <text class="label" x="345" y="192"><tspan x="345">Manifest and</tspan><tspan x="345" dy="27">audit checks</tspan></text>
+  <!-- Connectors: top row moves left to right, bottom row right to left. -->
+  <path d="M376 253H411" stroke="#9D8BB5" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M766 253H801" stroke="#9D8BB5" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M1000 351V390" stroke="#9D8BB5" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M802 489H767" stroke="#9D8BB5" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M412 489H377" stroke="#9D8BB5" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
 
-  <rect class="box" x="473" y="133" width="184" height="128" rx="9"/>
-  <text class="label" x="565" y="192"><tspan x="565">Group IDs</tspan><tspan x="565" dy="27">81 groups</tspan></text>
+  <!-- Stage 1 -->
+  <g>
+    <rect class="card" x="38" y="165" width="338" height="186" rx="20"/>
+    <rect x="38" y="165" width="7" height="186" rx="3.5" fill="url(#violet)"/>
+    <circle cx="76" cy="204" r="18" fill="#EEE7F7"/>
+    <text x="76" y="209" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="750" fill="#57367F">01</text>
+    <text x="105" y="211" class="step-title">BreaKHis images</text>
+    <g transform="translate(65 236)">
+      <rect x="0" y="0" width="54" height="44" rx="8" fill="#F0E5F3" stroke="#D6C4E2"/>
+      <path d="M8 13C15 5 20 19 28 12S42 10 47 18M7 31C17 23 20 37 31 28S41 31 48 25" fill="none" stroke="#8E65A8" stroke-width="3" stroke-linecap="round"/>
+      <rect x="63" y="0" width="54" height="44" rx="8" fill="#E8EDF8" stroke="#C7D2E9"/>
+      <circle cx="80" cy="16" r="7" fill="#9E83C0"/><circle cx="98" cy="27" r="9" fill="#6C8FB7"/><circle cx="106" cy="10" r="4" fill="#C39AC2"/>
+    </g>
+    <text x="65" y="305" class="step-body">7,909 images · 4 magnifications</text>
+    <text x="65" y="328" class="step-body">Benign and malignant classes</text>
+  </g>
 
-  <rect class="box" x="693" y="133" width="184" height="128" rx="9"/>
-  <text class="label" x="785" y="177"><tspan x="785">5 outer</tspan><tspan x="785" dy="27">folds: train,</tspan><tspan x="785" dy="27">val, test</tspan></text>
+  <!-- Stage 2 -->
+  <g>
+    <rect class="card" x="431" y="165" width="335" height="186" rx="20"/>
+    <rect x="431" y="165" width="7" height="186" rx="3.5" fill="#8060A4"/>
+    <circle cx="469" cy="204" r="18" fill="#EEE7F7"/>
+    <text x="469" y="209" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="750" fill="#57367F">02</text>
+    <text x="498" y="211" class="step-title">Manifest and audit</text>
+    <g transform="translate(459 236)" stroke="#7A5A9D" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 3h28l12 12v30H4Z" fill="#F8F4FC" stroke="#C9B7DE"/>
+      <path d="M32 3v12h12"/>
+      <path d="M12 25l4 4 8-9M12 37h19"/>
+    </g>
+    <text x="519" y="253" class="step-body">Metadata, file hashes</text>
+    <text x="519" y="276" class="step-body">Audit checks and duplicates</text>
+    <text x="458" y="321" class="step-body">Review identifier collisions</text>
+  </g>
 
-  <!-- Branch arrows -->
-  <path class="arrow" marker-end="url(#arrowhead)" d="M217 197 H248"/>
-  <path class="arrow" marker-end="url(#arrowhead)" d="M437 197 H468"/>
-  <path class="arrow" marker-end="url(#arrowhead)" d="M657 197 H688"/>
+  <!-- Stage 3 -->
+  <g>
+    <rect class="card" x="803" y="165" width="359" height="186" rx="20"/>
+    <rect x="803" y="165" width="7" height="186" rx="3.5" fill="#9B5E9B"/>
+    <circle cx="841" cy="204" r="18" fill="#F3E7F3"/>
+    <text x="841" y="209" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="750" fill="#874C83">03</text>
+    <text x="870" y="211" class="step-title">Build group IDs</text>
+    <g transform="translate(832 239)" fill="none" stroke="#97679A" stroke-width="2.5">
+      <rect x="0" y="0" width="34" height="28" rx="7" fill="#F8F1F8"/>
+      <rect x="11" y="12" width="34" height="28" rx="7" fill="#F8F1F8"/>
+    </g>
+    <text x="891" y="252" class="step-body">Full YEAR–SLIDE_ID token</text>
+    <text x="891" y="275" class="step-body">81 filename-derived groups</text>
+    <text x="831" y="321" class="step-body">Conservative grouping proxy</text>
+  </g>
 
-  <!-- Model options -->
-  <rect class="box" x="913" y="33" width="184" height="88" rx="9"/>
-  <text class="label" x="1005" y="87">Majority</text>
+  <!-- Stage 4 -->
+  <g>
+    <rect class="card" x="803" y="390" width="359" height="190" rx="20"/>
+    <rect x="803" y="390" width="7" height="190" rx="3.5" fill="#5E8B83"/>
+    <circle cx="841" cy="429" r="18" fill="#E4F2EF"/>
+    <text x="841" y="434" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="750" fill="#356D65">04</text>
+    <text x="870" y="436" class="step-title">Group-separated folds</text>
+    <g transform="translate(832 457)">
+      <rect x="0" y="0" width="49" height="16" rx="5" fill="#4C2A7A"/>
+      <rect x="0" y="22" width="49" height="16" rx="5" fill="#997AB9"/>
+      <rect x="0" y="44" width="49" height="16" rx="5" fill="#D3C7E1"/>
+      <text x="59" y="13" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#655B70">Train</text>
+      <text x="59" y="35" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#655B70">Validation</text>
+      <text x="59" y="57" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#655B70">Outer test</text>
+    </g>
+    <text x="1009" y="474" class="step-body">5 outer folds</text>
+    <text x="1009" y="497" class="step-body">Groups disjoint</text>
+    <text x="831" y="559" class="step-body">Each group tested once</text>
+  </g>
 
-  <rect class="box" x="913" y="153" width="184" height="88" rx="9"/>
-  <text class="label" x="1005" y="193"><tspan x="1005">CNN</tspan><tspan x="1005" dy="27">scratch</tspan></text>
+  <!-- Stage 5 -->
+  <g>
+    <rect class="card" x="431" y="390" width="335" height="190" rx="20"/>
+    <rect x="431" y="390" width="7" height="190" rx="3.5" fill="#6D78A4"/>
+    <circle cx="469" cy="429" r="18" fill="#E9ECF7"/>
+    <text x="469" y="434" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="750" fill="#4D5B8E">05</text>
+    <text x="498" y="436" class="step-title">Three baselines</text>
+    <g transform="translate(459 459)">
+      <circle cx="8" cy="8" r="5" fill="#8B78AE"/><text x="24" y="13" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16" fill="#655B70">Majority-class baseline</text>
+      <circle cx="8" cy="35" r="5" fill="#8B78AE"/><text x="24" y="40" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16" fill="#655B70">CNN trained from scratch</text>
+      <circle cx="8" cy="62" r="5" fill="#8B78AE"/><text x="24" y="67" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="16" fill="#655B70">Frozen ResNet18</text>
+    </g>
+    <text x="458" y="559" class="step-body">Select checkpoints on validation data</text>
+  </g>
 
-  <rect class="box" x="913" y="273" width="184" height="88" rx="9"/>
-  <text class="label" x="1005" y="313"><tspan x="1005">ResNet18</tspan><tspan x="1005" dy="27">frozen</tspan></text>
+  <!-- Stage 6 -->
+  <g>
+    <rect class="card" x="38" y="390" width="338" height="190" rx="20"/>
+    <rect x="38" y="390" width="7" height="190" rx="3.5" fill="#B37A54"/>
+    <circle cx="76" cy="429" r="18" fill="#F7ECE4"/>
+    <text x="76" y="434" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="750" fill="#8F5B3A">06</text>
+    <text x="105" y="436" class="step-title">Evaluate and review</text>
+    <g transform="translate(67 460)" fill="none" stroke="#B17A53" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0 52V4M0 52H54"/>
+      <path d="M7 41l12-13 10 5 18-22"/>
+      <circle cx="19" cy="28" r="3" fill="#B17A53"/><circle cx="29" cy="33" r="3" fill="#B17A53"/><circle cx="47" cy="11" r="3" fill="#B17A53"/>
+    </g>
+    <text x="139" y="475" class="step-body">Image-level metrics</text>
+    <text x="139" y="498" class="step-body">Group-level metrics</text>
+    <text x="139" y="521" class="step-body">Magnification and error review</text>
+    <text x="66" y="559" class="step-body">Export fold results and predictions</text>
+  </g>
 
-  <path class="arrow" marker-end="url(#arrowhead)" d="M877 197 L908 77"/>
-  <path class="arrow" marker-end="url(#arrowhead)" d="M877 197 H908"/>
-  <path class="arrow" marker-end="url(#arrowhead)" d="M877 197 L908 317"/>
-
-  <!-- Evaluation -->
-  <rect class="box" x="1133" y="133" width="184" height="128" rx="9"/>
-  <text class="label" x="1225" y="177"><tspan x="1225">Metrics,</tspan><tspan x="1225" dy="27">predictions,</tspan><tspan x="1225" dy="27">error review</tspan></text>
-
-  <path class="arrow" marker-end="url(#arrowhead)" d="M1097 77 L1128 197"/>
-  <path class="arrow" marker-end="url(#arrowhead)" d="M1097 197 H1128"/>
-  <path class="arrow" marker-end="url(#arrowhead)" d="M1097 317 L1128 197"/>
+  <rect x="38" y="612" width="1124" height="102" rx="18" fill="#EFEAF6" stroke="#DED3EB"/>
+  <circle cx="72" cy="650" r="14" fill="#6E4A98"/>
+  <text x="72" y="655" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="17" font-weight="800" fill="#FFFFFF">i</text>
+  <text x="99" y="646" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="17" font-weight="700" fill="#47305E">Interpretation note</text>
+  <text x="99" y="674" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15.5" fill="#62546F">Groups are derived from filenames; they are not verified patient identities. Group-level scores aggregate image probabilities</text>
+  <text x="99" y="696" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15.5" fill="#62546F">within each group. Results describe this dataset and protocol, not clinical performance.</text>
 </svg>

@@ -1,37 +1,38 @@
 <a id="top"></a>
 
 <p align="center">
-  <img src="https://github.com/Kumkumpathare/MammoCare/blob/main/assets/heading-mono-violet.svg" alt="MammoCare Notebooks" width="560">
+  <img src="https://raw.githubusercontent.com/aryanap07/MammoCare/main/assets/heading-mono-violet.svg" alt="MammoCare Research Notebooks" width="560">
 </p>
 
 <p align="center">
-<strong>Aryan Patel</strong> (GitHub: <a href="https://github.com/aryanap07">aryanap07</a>) and <strong>Kumkum Pathare</strong> (GitHub: <a href="https://github.com/Kumkumpathare">Kumkumpathare</a>)
+  <strong>Aryan Patel</strong> · <a href="https://github.com/aryanap07">aryanap07</a><br>
+  <strong>Kumkum Pathare</strong> · <a href="https://github.com/Kumkumpathare">Kumkumpathare</a>
 </p>
 
 <p align="center">
-Notebooks that classify BreaKHis histopathology images as benign or malignant. Notebook 01 audits the dataset, defines group-separated cross-validation folds and evaluates three baseline models: a majority-class classifier, a small convolutional neural network (CNN) trained from scratch, and a frozen ResNet18.
+  Research notebooks for breast histopathology image analysis and benign-versus-malignant classification using BreaKHis.
 </p>
 
 <p align="center">
-<a href="../README.md">Main README</a> ·
-<a href="01_dataset_audit_grouped_evaluation_baselines.ipynb">Notebook 01</a> ·
-<a href="#results">Results</a> ·
-<a href="#installation-and-usage">Installation and usage</a> ·
-<a href="#outputs">Outputs</a> ·
-<a href="#limitations">Limitations</a> ·
-<a href="#citation">Citation</a>
+  <a href="../README.md">Main README</a> ·
+  <a href="01_dataset_audit_grouped_evaluation_baselines.ipynb">Notebook 01</a> ·
+  <a href="#results">Results</a> ·
+  <a href="#installation-and-usage">Installation and usage</a> ·
+  <a href="#outputs">Outputs</a> ·
+  <a href="#limitations">Limitations</a> ·
+  <a href="#citation">Citation</a>
 </p>
 
 > [!IMPORTANT]
-> This is a research workflow. It is not a clinically validated diagnostic tool.
+> This is an academic research workflow, not a clinically validated diagnostic tool. Its outputs must not be used for medical screening, diagnosis, or treatment decisions.
 
-##  • Key findings
+## Key findings
 
-- The evaluation splits data by group (never by image) across 5 outer folds.
-- Group-level ROC-AUC (mean over 5 folds): ResNet18 (frozen) 0.938, CNN (scratch) 0.917, majority class 0.500.
-- With only 81 groups, the difference between the two learned models is small relative to fold-to-fold variation.
+- Notebook 01 audits the BreaKHis dataset, assigns filename-derived groups, and evaluates models across five outer folds. The partitions are separated by group, never by individual image.
+- Mean group-level ROC-AUC across the five outer folds was **0.938** for frozen ResNet18, **0.917** for the CNN trained from scratch, and **0.500** for the majority-class baseline.
+- The dataset has only 81 default groups, and fold-to-fold variability is meaningful. These results do not establish that either learned model is superior.
 
-##  • Contents
+## Contents
 
 1. [Introduction](#introduction)
 2. [Notebook index](#notebook-index)
@@ -48,156 +49,144 @@ Notebooks that classify BreaKHis histopathology images as benign or malignant. N
 ---
 
 <a id="introduction"></a>
-## • Introduction
+## Introduction
 
-This directory contains the notebooks of MammoCare, a research project on the classification of breast histopathology images as benign or malignant using the BreaKHis dataset. The evaluation is designed so that images from the same group do not appear in both the training and the test data: folds are split by group, never by image.
-
-
+This directory contains the MammoCare notebooks for breast histopathology image classification using the BreaKHis dataset. Notebook 01 establishes a reproducible baseline workflow covering dataset audit, group assignment, cross-validation, model training, metrics, and error review.
 
 | Item | Detail |
 |---|---|
-| Task | Binary classification (benign vs malignant) of BreaKHis histopathology images |
-| Evaluation | 5 outer folds, split by group and never by image |
-| Models | Majority class, small CNN trained from scratch, ResNet18 (frozen) |
-| Hardware | T4 graphics processing unit (GPU) on Kaggle, about 80 minutes for all 5 folds |
-
-
-
----
+| Task | Binary classification: benign versus malignant |
+| Dataset | BreaKHis |
+| Evaluation | Five outer folds separated by filename-derived group |
+| Models | Majority-class baseline, CNN trained from scratch, frozen ResNet18 |
+| Recorded environment | Kaggle with a T4 GPU; runtime will vary with hardware and environment |
 
 <a id="notebook-index"></a>
-## • Notebook index
+## Notebook index
 
 | # | Notebook | Contents | Status |
 |---|---|---|---|
-| 01 | [`01_dataset_audit_grouped_evaluation_baselines.ipynb`](01_dataset_audit_grouped_evaluation_baselines.ipynb) | Dataset audit, group-separated folds, baseline models | Done |
-| 02 | [TO BE ADDED] | Augmentation, resizing, fine-tuning | Planned |
-
-
-
----
+| 01 | [`01_dataset_audit_grouped_evaluation_baselines.ipynb`](01_dataset_audit_grouped_evaluation_baselines.ipynb) | Dataset audit, group-separated folds, baseline models, evaluation and error review | Complete for the current baseline stage |
+| 02 | Planned | Controlled experiments including augmentation and ResNet18 fine-tuning | Planned |
 
 <a id="repository-structure"></a>
-## • Repository structure
+## Repository structure
 
-- [notebooks/](../notebooks/)
-- [assets/](../assets/)
-- [docs/](../docs/)
-- [outputs/](../outputs/)
-- [.github/](../.github/)
-- [README.md](../README.md)
-- [requirements.txt](../requirements.txt)
-- [pyproject.toml](../pyproject.toml)
-- [LICENSE](../LICENSE)
-- [CONTRIBUTING.md](../CONTRIBUTING.md)
-- [SECURITY.md](../SECURITY.md)
+```text
+MammoCare/
+├── assets/
+│   ├── heading-mono-violet.svg
+│   └── breakhis_workflow.svg
+├── notebooks/
+│   ├── README.md
+│   └── 01_dataset_audit_grouped_evaluation_baselines.ipynb
+├── outputs/                 # Generated locally; not required to be committed
+├── pyproject.toml
+└── README.md
+```
 
-
-
----
+The repository may contain additional project files. The notebook writes generated artifacts to `outputs/` by default.
 
 <a id="dataset-description"></a>
-## • Dataset description
+## Dataset description
 
 | Item | Detail |
 |---|---|
-| Source | BreaKHis |
-| Images | 7,909 (2,480 benign, 5,429 malignant) |
-| Magnification | 40X, 100X, 200X, 400X |
-| Groups | 81, defined by the full YEAR-SLIDE_ID token in the filename |
-| Download size | About 4.3 GB |
-| Official dataset page | [BreaKHis dataset archive] (https://www.inf.ufpr.br/vri/databases/BreaKHis_v1.tar.gz)  |
+| Source | [Official BreaKHis dataset page](https://web.inf.ufpr.br/vri/databases/breast-cancer-histopathological-database-breakhis/) |
+| Images | 7,909 total: 2,480 benign and 5,429 malignant |
+| Magnifications | 40×, 100×, 200×, 400× |
+| Default groups | 81 filename-derived groups |
+| Approximate archive size | 4.3 GB; actual download and extracted size may vary |
+| Direct archive used by the notebook | [BreaKHis archive](http://www.inf.ufpr.br/vri/databases/BreaKHis_v1.tar.gz) |
+
+The notebook uses the complete `YEAR-SLIDE_ID` filename token for grouping. Alphabetic suffixes are preserved; the numeric prefix is used only for collision review. Where the same complete token appears across diagnostic subtype folders, those records are conservatively assigned to the same group. These filename-derived groups are proxies, not verified clinical patient identities. Review the generated group mapping and audit reports before interpreting group-level metrics.
 
 [Back to top](#top)
 
----
-
 <a id="methodology"></a>
-## • Methodology
+## Methodology
 
-###  • Pipeline
+### Pipeline
 
 <p align="center">
-  <img src="https://github.com/Kumkumpathare/MammoCare/blob/main/assets/breakhis_workflow.svg" alt="Pipeline: BreaKHis images, manifest and audit checks, group IDs, 5 outer folds, three models, metrics and error review" width="720">
+  <img src="https://raw.githubusercontent.com/aryanap07/MammoCare/main/assets/breakhis_workflow.svg" alt="BreaKHis workflow: dataset audit, group assignment, five outer folds, baseline models, metrics and error review" width="720">
 </p>
 
-###  •Models
+### Models
 
 | Model | Description |
 |---|---|
-| Majority class | Baseline that always predicts the most frequent class |
-| CNN (scratch) | Small convolutional neural network trained from scratch. |
-| ResNet18 (frozen) | ResNet18 with frozen layers. |
+| Majority class | Baseline that predicts the most frequent class in the training data |
+| CNN (scratch) | Small convolutional neural network trained from scratch |
+| ResNet18 (frozen) | ResNet18 feature extractor with frozen pretrained layers and a trained classification head |
 
-###  • Evaluation protocol
+### Evaluation protocol
 
-- Folds are split by group, never by image.
-- Image-level predictions are averaged within each group to obtain group-level results.
-- The test fold is never used for model selection.
+- The notebook creates five outer folds over the filename-derived groups. Groups assigned to train, validation, and test are kept separate within each fold.
+- Validation ROC-AUC is used for neural-model checkpoint selection. The test partition is not used for model selection.
+- Image-level probabilities are averaged within each group for group-level reporting.
+- The default grouping can be overridden with a documented `outputs/patient_group_mapping.csv` file, but a mapping must not split records that share the same full filename token.
 
-### •Training settings
+### Baseline training settings
 
 | Setting | Value |
 |---|---|
-| Seed | 42 |
-| Image size | 224 |
+| Random seed | 42 |
+| Input size | 224 × 224 pixels |
 | Batch size | 32 |
 | Maximum epochs | 15 |
-| Early stopping | Patience of 4 epochs |
-| Optimiser | AdamW, learning rate 1e-3, weight decay 1e-4 |
+| Early stopping patience | 4 epochs |
+| Optimizer | AdamW |
+| Learning rate | 1e-3 |
+| Weight decay | 1e-4 |
 | Loss | Class-weighted cross-entropy |
-| Checkpoint selection | Best validation area under the receiver operating characteristic curve (ROC-AUC) |
-| Augmentation | None |
-
-
-
----
+| Checkpoint selection | Highest validation ROC-AUC |
+| Image normalization | ImageNet mean and standard deviation |
+| Data augmentation | None in the baseline experiment |
 
 <a id="installation-and-usage"></a>
-## • Installation and usage
+## Installation and usage
 
-###  • Requirements
+### Requirements
 
-- A GPU is strongly recommended.
-- Python version: Python 3.11 recommended
-- Dependencies used by the notebook: torch, torchvision, scikit-learn, pandas, numpy, Pillow, matplotlib, tqdm, ipython and jupyter. The packages pytest and ruff are not required.
+- Python **3.12 or newer**, consistent with `pyproject.toml`.
+- PyTorch, torchvision, scikit-learn, pandas, NumPy, Pillow, matplotlib, and tqdm.
+- Jupyter for interactive notebook execution.
+- A CUDA-capable GPU is recommended for the full five-fold run. The notebook falls back to CPU when CUDA is unavailable, but execution may take longer.
 
-###  • Installation
+### Installation
+
+From the repository root:
 
 ```bash
 git clone https://github.com/aryanap07/MammoCare.git
 cd MammoCare
-pip install -r requirements.txt
+python -m pip install -e ".[dev]"
 ```
 
-###  • Usage
+The `.[dev]` extra installs the project dependencies together with the development tools declared in `pyproject.toml`, including Jupyter.
 
-Open [`notebooks/01_dataset_audit_grouped_evaluation_baselines.ipynb`](01_dataset_audit_grouped_evaluation_baselines.ipynb) and run it from top to bottom.
+### Run the notebook
 
-For a reduced test run, set `folds_to_run=(0,)` and lower the number of epochs in the Config cell.
+Open [`01_dataset_audit_grouped_evaluation_baselines.ipynb`](01_dataset_audit_grouped_evaluation_baselines.ipynb) from the `notebooks/` directory and execute the cells from top to bottom. The first run downloads and extracts BreaKHis unless `BREAKHIS_ROOT` points to an existing extracted dataset.
 
-###  • Optional settings
+For a quick pipeline check, set `folds_to_run=(0,)` in the configuration cell and reduce the epoch count. Treat results from a reduced run as a smoke test, not as the five-fold experiment's results.
 
-<details>
-<summary>Environment variables</summary>
+### Optional environment variables
 
 | Variable | Purpose | Default |
 |---|---|---|
-| `BREAKHIS_ROOT` | Use an existing extracted copy and skip the download | not set |
-| `BREAKHIS_DATA_DIR` | Download and extraction location (about 4.3 GB) | `./data` |
-| `BREAKHIS_URL` | Archive URL | official link |
-| `BREAKHIS_OUT` | Output folder | `./outputs` |
-
-</details>
-
-
-
----
+| `BREAKHIS_ROOT` | Path to an existing extracted dataset; skips the download when valid | Not set |
+| `BREAKHIS_DATA_DIR` | Download and extraction directory | `./data` |
+| `BREAKHIS_URL` | Dataset archive URL | Notebook's BreaKHis archive URL |
+| `BREAKHIS_OUT` | Directory for generated outputs | `./outputs` |
 
 <a id="results"></a>
-## • Results
+## Results
 
-Group-level results, mean over 5 folds. Image predictions are averaged within each group.
+The tables below report the mean across the five executed outer folds. Group-level predictions are formed by averaging image probabilities within each filename-derived group. Values are rounded to three decimal places and reflect the saved notebook run, not a guarantee of future performance.
+
+### Group-level metrics
 
 | Model | Accuracy | Balanced accuracy | ROC-AUC |
 |---|---:|---:|---:|
@@ -205,8 +194,7 @@ Group-level results, mean over 5 folds. Image predictions are averaged within ea
 | CNN (scratch) | 0.852 | 0.863 | 0.917 |
 | ResNet18 (frozen) | 0.865 | 0.849 | 0.938 |
 
-<details>
-<summary>Image-level results</summary>
+### Image-level metrics
 
 | Model | Accuracy | Balanced accuracy | ROC-AUC |
 |---|---:|---:|---:|
@@ -214,77 +202,60 @@ Group-level results, mean over 5 folds. Image predictions are averaged within ea
 | CNN (scratch) | 0.778 | 0.790 | 0.868 |
 | ResNet18 (frozen) | 0.812 | 0.814 | 0.892 |
 
-</details>
+### Interpretation and error review
 
-**Interpretation.**: With only 81 groups, each test fold contains about 16. Fold-to-fold variation is large (group-level balanced accuracy standard deviation: 0.04 for the CNN and 0.12 for ResNet18). The difference between the two models is small relative to this variation, so the results do not establish that either model is superior.
+Group-level balanced-accuracy standard deviation across folds was **0.040** for the CNN and **0.122** for frozen ResNet18. With only 81 groups and this degree of fold-to-fold variation, the mean scores do not establish that one learned model is superior.
 
-**Error analysis.** : Most errors are false negatives on ductal carcinoma and false positives on adenosis and fibroadenoma.
-
-
-
----
+The saved error review includes recurring false negatives among ductal carcinoma images and false positives among adenosis and fibroadenoma images. These are error-analysis observations from this run, not clinical conclusions. Review the fold-level and per-magnification counts before drawing further conclusions.
 
 <a id="outputs"></a>
-## • Outputs
+## Outputs
 
-By default, all generated files are written to the `outputs/` directory. The location can be changed with the `BREAKHIS_OUT` environment variable.
-
-<details>
-<summary>List of generated files</summary>
+Generated artifacts are written to `outputs/` by default. Set `BREAKHIS_OUT` to change the location.
 
 | File | Contents |
 |---|---|
 | `manifest.csv` | One row per image with parsed metadata and file hash |
 | `dataset_audit_checks.csv` | PASS / FAIL / INFO audit results |
-| `identifier_collision_review.csv` | Cases sharing a numeric prefix (informational) |
-| `duplicate_image_review.csv` | Exact duplicates (none found) |
-| `patient_group_mapping_template.csv` | Default case-to-group mapping |
-| `group_summary.csv` | Images per group |
-| `partitions.csv` | Train / validation / test groups for each fold |
-| `results.csv` | Fold-level metrics, image and group level |
-| `predictions.csv` | Per-image predicted probabilities |
-| `magnification_results.csv` | Metrics for 40X, 100X, 200X and 400X |
-| `misclassified_examples.csv` | Images misclassified by the learned models |
-| `runs/fold_<k>/<model>/` | `best.pt`, `history.csv`, `run_info.json` |
+| `identifier_collision_review.csv` | Cases sharing a numeric prefix; for review only |
+| `duplicate_image_review.csv` | Exact-duplicate image review |
+| `patient_group_mapping_template.csv` | Template for a reviewed case-to-group mapping |
+| `group_summary.csv` | Image counts per group |
+| `partitions.csv` | Train, validation, and test group assignments by fold |
+| `results.csv` | Fold-level image- and group-level metrics |
+| `predictions.csv` | Per-image predictions and probabilities |
+| `magnification_results.csv` | Metrics by magnification and evaluation level |
+| `misclassified_examples.csv` | Misclassified image examples for error review |
+| `runs/fold_<k>/<model>/best.pt` | Selected model checkpoint |
+| `runs/fold_<k>/<model>/history.csv` | Training history |
+| `runs/fold_<k>/<model>/run_info.json` | Recorded run configuration and metadata |
 
-</details>
-
-
-
----
+Keep the audit reports, grouping policy, and run configuration with any results shared outside the project. The group-level estimates depend on the reviewed grouping map.
 
 <a id="limitations"></a>
-## • Limitations
+## Limitations
 
-- Results come from group-level cross-validation with few groups (81), so they vary considerably between folds.
-- This is an academic workflow, not a clinically validated diagnostic tool.
-- Groups are derived from filenames and are a conservative proxy for patients, not verified identities.
-- Results on BreaKHis alone do not show how the models would perform at other institutions.
-- Per-magnification results rest on few groups per fold and should be interpreted with caution.
-
-
-
----
+- The default groups are derived from filenames and are not verified patient identities.
+- Only 81 default groups are available; fold-level variation is substantial for some metrics.
+- BreaKHis-only results do not establish performance on other datasets, institutions, staining protocols, or acquisition systems.
+- Per-magnification metrics involve smaller subsets and should be interpreted cautiously.
+- No external clinical validation has been established. The notebook is intended for research and education, not clinical use.
 
 <a id="next-steps"></a>
-## • Next steps
+## Next steps
 
-Planned as separate, controlled experiments on the same folds:
+Planned as controlled experiments using the same reviewed group assignments where appropriate:
 
-- Augmentation
-- Aspect-ratio-preserving resizing
-- ResNet18 fine-tuning
-- Magnification-specific analysis
-- Stain normalisation
-- Grad-CAM for qualitative inspection
-
-
-
----
+- Evaluate data augmentation.
+- Compare aspect-ratio-preserving resizing with the baseline resize.
+- Fine-tune ResNet18.
+- Investigate magnification-specific performance.
+- Evaluate stain normalization.
+- Use Grad-CAM for qualitative model inspection, with appropriate interpretive caution.
 
 <a id="citation"></a>
-## • Citation
+## Citation
 
-F. Spanhol, L. S. Oliveira, C. Petitjean and L. Heutte, "A Dataset for Breast Cancer Histopathological Image Classification," IEEE Transactions on Biomedical Engineering, 63(7), 1455-1462, 2016.
+Spanhol, F., Oliveira, L. S., Petitjean, C., and Heutte, L. “A Dataset for Breast Cancer Histopathological Image Classification.” *IEEE Transactions on Biomedical Engineering*, 63(7), 1455–1462, 2016.
 
 [Back to top](#top)
